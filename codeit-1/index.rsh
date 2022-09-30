@@ -31,7 +31,8 @@ export const main = Reach.App(() => {
   });
 
   const Buyer = Participant("Buyer", {
-    ...role_2
+    ...role_2,
+
 
   });
   
@@ -63,7 +64,7 @@ export const main = Reach.App(() => {
     const description = declassify(interact.getDescription());
 
   })
-  Buyer.publish(description); 
+  Buyer.publish(description, payment).pay(payment); 
   commit();
 
   exit();
