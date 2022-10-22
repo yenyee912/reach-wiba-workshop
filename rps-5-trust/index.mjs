@@ -15,12 +15,18 @@ const beforeBob = await getBalance(accBob);
 const ctcAlice = accAlice.contract(backend);
 const ctcBob = accBob.contract(backend, ctcAlice.getInfo());
 
-
 const HAND = ['Rock', 'Paper', 'Scissors'];
-const OUTCOME = ['Bob wins', 'Draw', 'Alice wins'];
+const OUTCOME = ['Bob wins', 'Draw', 'Alice wins']; // represent the index of outcome from line 31  
 
 const Player = (playerName)=> ({
   ...stdlib.hasRandom, // <--- new!
+  /*
+  hasRandom (Frontend): A value suitable for use as a participant interact interface 
+  requiring a random function, such as hasRandom. 
+  Reach does not natively support randomness,
+  leaves random number generation to the frontend implementation. 
+  */
+ ...stdlib.hasConsoleLogger,
   getHand: () => {
     const hand = Math.floor(Math.random() * 3);
     console.log(`${playerName} played ${HAND[hand]}`);
@@ -52,13 +58,3 @@ const afterBob = await getBalance(accBob);
 
 console.log(`Alice went from ${beforeAlice} to ${afterAlice}.`);
 console.log(`Bob went from ${beforeBob} to ${afterBob}.`);
-
-
-/*
-DRAW
-Alice played Scissors
-Bob accepts the wager of 5.
-Bob played Scissors
-Alice went from 100 to 99.996.
-Bob went from 100 to 99.995.
-*/
