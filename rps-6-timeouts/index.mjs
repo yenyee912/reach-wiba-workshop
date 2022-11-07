@@ -41,7 +41,7 @@ await Promise.all([
     ...Player('Bob'),
     acceptWager: async (amt) => { // <-- async now
       if (Math.random() <= 0.5) {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 10; i++) { // delay a ten time
           console.log(`  Bob takes his sweet time...`);
           await stdlib.wait(1);
         }

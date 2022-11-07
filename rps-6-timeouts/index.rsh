@@ -68,7 +68,7 @@ export const main = Reach.App(() => {
     const handAlice = declassify(_handAlice);
   });
   Alice.publish(saltAlice, handAlice)
-    .timeout(relativeTime(deadline), () => closeTo(Bob, informTimeout));
+    .timeout(relativeTime(deadline), () => closeTo(Bob, informTimeout)); // new code
   checkCommitment(commitAlice, saltAlice, handAlice);
 
   const outcome = winner(handAlice, handBob);
