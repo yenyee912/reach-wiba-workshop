@@ -2,3 +2,5 @@
 */build
 reach
 .reach
+*.env
+*.txt
