@@ -6,10 +6,8 @@
 // If the deadline is triggered, the contract should perform a closeTo for "Alice" and 
 // trigger the function timeExpiration.
 
-
 const Player = {
   timeExpiration: Fun([], Null),
-
 };
 
 export const main = Reach.App(() => {
@@ -20,8 +18,9 @@ export const main = Reach.App(() => {
 
   const Eve = Participant('Eve', {
     ...Player,
-    callLog: UInt,  
-    getCallLog: Fun([], UInt),
+    getCallLog: Fun([], Null),
+    callLog: UInt,
+    computeNumber: Fun([], UInt),
 
   });
   init();
@@ -39,7 +38,8 @@ export const main = Reach.App(() => {
   commit();
 
   Eve.only(() => {
-    const callLog = declassify(interact.getCallLog());
+    interact.getCallLog();
+    const callLog = declassify(interact.computeNumber());
   });
   Eve.publish(callLog).timeout(relativeTime(deadline), () => closeTo(Alice, timeExpiration));
   commit();

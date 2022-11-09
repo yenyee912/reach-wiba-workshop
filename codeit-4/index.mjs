@@ -16,11 +16,13 @@ const Player = (Who) => ({
 
 });
 
+let randNum= 3;
 await Promise.all([
   ctcAlice.p.Alice({
     ...Player('Alice'),
     deadline: 10,
   }),
+
   ctcEve.p.Eve({
     ...Player('Eve'),
     getCallLog: async()=> { // <-- async now
@@ -29,10 +31,16 @@ await Promise.all([
           console.log(`Eve takes her sweet time...`);
           await stdlib.wait(1);
         }
-      } else {
-        return 33;
+      } 
+      
+      else {
+        console.log("Eve reveal callLog...")
       }
     },
+
+    computeNumber: async()=>{
+      return 4;
+    }
   }),
 ]);
 
