@@ -15,13 +15,13 @@ const ctcAlice = accAlice.contract(backend);
 const ctcBob = accBob.contract(backend, ctcAlice.getInfo());
 
 const fortuneList = ['GOOD_DAY', 'BAD_DAY', 'SOSO_DAY'];
-const dicisionList = ['True', 'False'];
+const decisionList = ['ACCEPT', 'REJECT']; // true or false
 
 const Player = (Who) => ({
   ...stdlib.hasRandom,
 
   seeOutcome: (outcome) => {
-    console.log(`${Who} saw outcome ${OUTCOME[outcome]}`);
+    console.log(`${Who} saw outcome ${decisionList[outcome]}`);
   },
   informTimeout: () => {
     console.log(`${Who} observed a timeout`);
@@ -34,8 +34,10 @@ await Promise.all([
     wager: stdlib.parseCurrency(10),
     deadline: 10,
     acceptFortune: (fortune)=>{
-      const dicisionIndex = Math.floor(Math.random() * 2);
-      console.log(`Alice ${dicisionList[dicisionIndex]} fortune: `);
+      const decisionIndex = Math.floor(Math.random() * 2);
+      console.log(`Alice ${decisionList[decisionIndex]} the fortune `);
+
+      return decisionIndex
     }
     
   }),

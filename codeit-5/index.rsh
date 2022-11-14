@@ -6,6 +6,7 @@ const [isFortune, GOOD_DAY, BAD_DAY, SOSO_DAY] = makeEnum(3);
 const Player = {
   seeOutcome: Fun([UInt], Null),
   informTimeout: Fun([], Null),
+
 };
 
 export const main = Reach.App(() => {
@@ -19,6 +20,8 @@ export const main = Reach.App(() => {
   const Bob = Participant('Bob', {
     ...Player,
     readFortune: Fun([], UInt), // compute fortune
+    acceptWager: Fun([UInt], Null),
+  
   });
   init();
 
@@ -36,9 +39,15 @@ export const main = Reach.App(() => {
   Alice.publish(wager, deadline)
   .pay(wager);
   commit();
+
+  // Bob.only(() => {
+  //   interact.acceptWager(wager);
+  // });
+  // Bob.pay(wager)
+  //   .timeout(relativeTime(deadline), () => closeTo(Alice, informTimeout));
  
   // var decisionAlice = FALSE; // make it false to start game
-  // invariant(balance() == wager && isFortune(decisionAlice));
+  // invariant(balance() == wager && isDecision(decisionAlice));
   
   // while (decisionAlice == FALSE) {
     // commit();
@@ -57,7 +66,7 @@ export const main = Reach.App(() => {
       .timeout(relativeTime(deadline), () => closeTo(Bob, informTimeout));
 
     // decisionAlice = decision;
-  //   continue;
+    // continue;
   // }
 
   // assert(outcome == A_WINS || outcome == B_WINS);
@@ -65,6 +74,8 @@ export const main = Reach.App(() => {
   commit();
 
   each([Alice, Bob], () => {
+    // interact.seeOutcome(decisionAlice);
     interact.seeOutcome(decision);
+
   });
 });
