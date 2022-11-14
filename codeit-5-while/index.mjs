@@ -48,7 +48,7 @@ await Promise.all([
       return fortuneIndex;
     },
     acceptFortunePrice: (price)=>{
-      console.log(`Bob accpet the price: ${price}.`);
+      console.log(`Bob accpet the price: ${fmt(price)}.`);
     },
     showDecision: (decisionFromAlice) => {
       console.log(`Bob see Alice ${decisionList[decisionFromAlice]} the fortune he read.`);

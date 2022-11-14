@@ -45,18 +45,18 @@ export const main = Reach.App(() => {
     B.publish(fortune);
     commit();
 
-    A.interact.showFortune(fortune);
-    A.publish();
-    commit();
+    // A.interact.showFortune(fortune);
+    // A.publish();
+    // commit();
 
     A.only(() => {
       const decision = declassify(interact.getDecision());
     });
     A.publish(decision);
-    commit();
+    // commit();
 
-    B.interact.showDecision(decision);
-    B.publish();
+    // B.interact.showDecision(decision);
+    // B.publish();
 
     aliceDecision = decision;
     continue;
